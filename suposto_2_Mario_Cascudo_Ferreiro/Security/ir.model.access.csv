@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+aceso_modulo_usuario,modelo.general.user,model_modelo_main_jardineria,grupo_usuario,1,1,1,0
+aceso_modelo_administrador,modelo.general.user,model_modelo_main_jardineria,grupo_administrador,1,1,1,1

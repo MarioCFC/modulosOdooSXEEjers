@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="cortacesped_tree" model="ir.ui.view">
+        <field name="name">Lista cortacesped</field>
+        <field name="model">modelo.main.jardineria</field>
+        <field name="arch" type="xml">
+            <tree string="Cortacesped">
+                <field name="nome"/>
+                <field name="identificador"/>
+                <field name="anho_fabricacion"/>
+                <field name="fecha_compra"/>
+                <field name="fecha_ultimo_cambio_cuchillas"/>
+                <field name="fecha_ultimo_cambio_aceite"/>
+                <field name="fecha_ultimo_cambio_ruedas_delanteras"/>
+                <field name="fecha_ultimo_cambio_ruedas_traseras"/>
+                <field name="se_ha_averiado_alguna_vez"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="barra_busqueda_cortacesped" model="ir.ui.view">
+        <field name="name">Buscar cortacesped</field>
+        <field name="model">modelo.main.jardineria</field>
+        <field name="arch" type="xml">
+            <search string="Cortacesped">
+                <field name="identificador"/>
+                <filter string = "Maquinas que han tenido alguna averia" name="filtro_cortacesped_alguna_vez_averiado" domain="[('se_ha_averiado_alguna_vez','=','true')]"/>
+            </search>
+        </field>
+    </record>
+
+    <record id="main_action" model="ir.actions.act_window">
+        <field name="name">Menganitos jardineria</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">modelo.main.jardineria</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem id="menu_cortacesped" name="Menganito Jardineria" sequence="10" action="main_action"/>
+</odoo>

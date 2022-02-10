@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <data noupdate="1">
+
+        <!--Categoria que almacena los grupos-->
+        <record id="modulo_categoria_alumno" model="ir.module.category">
+            <field name="name">Gestion de alumnado</field>
+            <field name="description">Categoria de alumnos</field>
+        </record>
+
+        <!--Grupos a los que pertenecen los usuarios-->
+        <record id="grupo_alumno_usuario" model="res.groups">
+            <field name="name">Usuario</field>
+            <field name="category_id" ref="modulo_categoria_alumno"/>
+        </record>
+
+        <record id="grupo_alumno_administrador" model="res.groups">
+            <field name="name">Administradores</field>
+            <field name="category_id" ref="modulo_categoria_alumno"/>
+            <field name="implied_ids" eval="[(4,ref('grupo_alumno_usuario'))]"/>
+        </record>
+
+
+        <!--Reglas aplicadas a los usuarios-->
+        <record id="regla_usuarios" model="ir.rule">
+            <field name="name">Reglas de los usuarios normales</field>
+            <field name="model_id" ref="model_modelo_main"/>
+            <field name="domain_force">[('create_uid','=',user.id)]</field>
+            <field name="groups" eval="[(4,ref('grupo_alumno_usuario'))]"/>
+        </record>
+
+        <record id="regla_administradores" model="ir.rule">
+            <field name="name">Reglas de los usuarios administradores</field>
+            <field name="model_id" ref="model_modelo_main"/>
+            <field name="domain_force">[]</field>
+            <field name="groups" eval="[(4,ref('grupo_alumno_administrador'))]"/>
+        </record>
+    </data>
+</odoo>

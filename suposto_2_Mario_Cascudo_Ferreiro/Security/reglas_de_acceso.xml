@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <data noupdate="1">
+
+        <!--Categoria que almacena los grupos-->
+        <record id="modulo_categoria_cortacesped" model="ir.module.category">
+            <field name="name">Gestion de cortacesped</field>
+            <field name="description">Categoria de cliente</field>
+        </record>
+
+        <!--Grupos a los que pertenecen los usuarios-->
+        <record id="grupo_usuario" model="res.groups">
+            <field name="name">Usuario</field>
+            <field name="category_id" ref="modulo_categoria_cortacesped"/>
+        </record>
+
+        <record id="grupo_administrador" model="res.groups">
+            <field name="name">Administradores</field>
+            <field name="category_id" ref="modulo_categoria_cortacesped"/>
+            <field name="implied_ids" eval="[(4,ref('grupo_usuario'))]"/>
+        </record>
+
+    </data>
+</odoo>

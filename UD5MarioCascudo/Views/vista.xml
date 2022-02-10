@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <!-- Tabla en la que vemo los distintos datos del alumno, es la vista predeterminada
+    en cuanto entras al módulo-->
+    <record id="alumnos_tree" model="ir.ui.view">
+        <field name="name">Lista de Proba</field>
+        <field name="model">modelo.main</field>
+        <field name="arch" type="xml">
+            <tree string="Proba Lista">
+                <field name="NombreAlumno" />
+                <field name="FechaNacimientoAlumno"/>
+                <field name="FinalizoCurso"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Barra de búsqueda, en este caso lo hace en base al nombre del alumno-->
+    <record id="barra_busqueda" model="ir.ui.view">
+        <field name="name">Nuevo Alumno</field>
+        <field name="model">modelo.main</field>
+        <field name="arch" type="xml">
+            <search string="Finalizó el curso">
+                <field name="FinalizoCurso"/>
+                <filter string="Primer año realizado" name="filtro_primer_año_superado" domain="[('FinalizoPrimerAño', '=', 'true')]"/>
+                <filter string="Segundo año realizado" name="filtro_segundo_año_superado" domain="[('FinalizoSegundoAño', '=', 'true')]"/>
+            </search>
+        </field>
+    </record>
+
+    <!-- Formulario para introducir los datos -->
+    <record id="formulario_nuevo_alumno" model="ir.ui.view">
+        <field name="name">Alumnos</field>
+        <field name="model">modelo.main</field>
+        <field name="arch" type="xml">
+            <form string="Formulario de Alumnos">
+                <group name="valores escritos">
+                    <field name="NombreAlumno"/>
+                    <field name="ApellidosAlumno"/>
+                </group>
+                <group name="fechas">
+                    <field name="FechaNacimientoAlumno"/>
+                    <field name="FechaMatriculacionAlumno"/>
+                </group>
+                <group name="cursosRealizados">
+                    <field name="FinalizoPrimerAño"/>
+                    <field name="FinalizoSegundoAño"/>
+                    <field name="FinalizoCurso"/>
+                </group>
+            </form>
+        </field>
+    </record>
+
+    <!-- Entiendo que esto es lo que hace que se carguen las vistas del modulo-->
+    <record id="main_action" model="ir.actions.act_window">
+        <field name="name">Alumno</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">modelo.main</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem id="menu_alumno" name="Alumnos" sequence="10" action="main_action"/>
+</odoo>
