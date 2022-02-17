@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="cortacesped_tree_heredado" model="ir.ui.view">
+        <field name="name">Lista cortacesped heredada</field>
+        <field name="model">modelo.main.jardineria</field>
+        <field name="inherit_id" ref="suposto_2_Mario_Cascudo_Ferreiro.cortacesped_tree"/>
+        <field name="arch" type="xml">
+                <field name="nome" position="after">
+                    <field name="tieneSeguro"/>
+                    <field name="compañiaAseguradora"/>
+                </field>
+        </field>
+    </record>
+</odoo>

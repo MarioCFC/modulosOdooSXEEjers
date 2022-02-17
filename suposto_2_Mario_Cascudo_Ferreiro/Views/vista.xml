@@ -5,9 +5,9 @@
         <field name="model">modelo.main.jardineria</field>
         <field name="arch" type="xml">
             <tree string="Cortacesped">
-                <field name="nome"/>
-                <field name="identificador"/>
-                <field name="anho_fabricacion"/>
+                <field name="nome" string="Nombre cortacesped"/>
+                <field name="identificador" string="Id"/>
+                <field name="anho_fabricacion" string="Año de fabricacion"/>
                 <field name="fecha_compra"/>
                 <field name="fecha_ultimo_cambio_cuchillas"/>
                 <field name="fecha_ultimo_cambio_aceite"/>
@@ -24,8 +24,53 @@
         <field name="arch" type="xml">
             <search string="Cortacesped">
                 <field name="identificador"/>
-                <filter string = "Maquinas que han tenido alguna averia" name="filtro_cortacesped_alguna_vez_averiado" domain="[('se_ha_averiado_alguna_vez','=','true')]"/>
+                <filter string="Maquinas que han tenido alguna averia" name="filtro_cortacesped_alguna_vez_averiado"
+                        domain="[('se_ha_averiado_alguna_vez','=','true')]"/>
             </search>
+        </field>
+    </record>
+
+    <record id="formulario_nuevo_cortacesped" model="ir.ui.view">
+        <field name="name">Cortacesped</field>
+        <field name="model">modelo.main.jardineria</field>
+        <field name="arch" type="xml">
+            <form string="Formulario de Cortacesped">
+                <notebook>
+                    <page string="Datos" name="pagina_datos_generales_cortacesped">
+                        <group name="datos_generales">
+                            <field name="nome"/>
+                            <field name="identificador"/>
+                            <field name="anho_fabricacion"/>
+                            <field name="fecha_compra"/>
+                            <field name="horas_trabajo"/>
+                        </group>
+                    </page>
+                    <page string="Estado Cortacesped">
+                        <group name="datos_cuchillas" string="Datos cuchillas">
+                            <field name="numero_cuchillas"/>
+                            <field name="diametro_cuchillas"/>
+                            <field name="fecha_ultimo_cambio_cuchillas"/>
+                        </group>
+
+                        <group name="datos_aceite" string="Datos aceite">
+                            <field name="tipo_aceite_motor"/>
+                            <field name="fecha_ultimo_cambio_aceite"/>
+                            <field name="horas_trabajo_ultimo_cambio_aceite"/>
+                        </group>
+
+                        <group name="datos_ruedas" string="Datos ruedas">
+                            <field name="tipo_ruedas_delanteras"/>
+                            <field name="fecha_ultimo_cambio_ruedas_delanteras"/>
+                            <field name="tipo_ruedas_traseras"/>
+                            <field name="fecha_ultimo_cambio_ruedas_traseras"/>
+                        </group>
+                        <group name="datos_averias" string="Datos averias">
+                            <field name="se_ha_averiado_alguna_vez"/>
+                            <field name="notas_averias"/>
+                        </group>
+                    </page>
+                </notebook>
+            </form>
         </field>
     </record>
 
