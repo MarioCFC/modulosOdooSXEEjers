@@ -45,7 +45,7 @@
                             <field name="horas_trabajo"/>
                         </group>
                     </page>
-                    <page string="Estado Cortacesped">
+                    <page string="Estado Cortacesped" name="pagina_datos_estado_cortacesped">
                         <group name="datos_cuchillas" string="Datos cuchillas">
                             <field name="numero_cuchillas"/>
                             <field name="diametro_cuchillas"/>

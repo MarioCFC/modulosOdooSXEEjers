@@ -5,10 +5,49 @@
         <field name="model">modelo.main.jardineria</field>
         <field name="inherit_id" ref="suposto_2_Mario_Cascudo_Ferreiro.cortacesped_tree"/>
         <field name="arch" type="xml">
-                <field name="nome" position="after">
-                    <field name="tieneSeguro"/>
-                    <field name="compañiaAseguradora"/>
-                </field>
+            <field name="nome" position="after">
+                <field name="tieneSeguro"/>
+                <field name="compañiaAseguradora"/>
+            </field>
         </field>
     </record>
+
+    <record id="formulario_nuevo_cortacesped_heredado" model="ir.ui.view">
+        <field name="name">Cortacesped</field>
+        <field name="model">modelo.main.jardineria</field>
+        <field name="inherit_id" ref="suposto_2_Mario_Cascudo_Ferreiro.formulario_nuevo_cortacesped"/>
+        <field name="arch" type="xml">
+            <field name="horas_trabajo" position="after">
+                <field name="tieneSeguro"/>
+            </field>
+
+            <page name="pagina_datos_estado_cortacesped" position="after">
+                <page string="Datos seguro" name="pagina_datos_seguro"  attrs="{'invisible':[('tieneSeguro','!=',True)]}">
+                    <group name="datos_seguro">
+                        <field name="compañiaAseguradora"/>
+                        <field name="numeroPoliza"/>
+                        <field name="importeSeguro"/>
+                        <field name="dataSeguro"/>
+                        <field name="contactoTomador"/>
+                        <field name="telefonoContacto"/>
+                    </group>
+                </page>
+            </page>
+        </field>
+    </record>
+
+    <record id="barra_busqueda_cortacesped_heredada" model="ir.ui.view">
+        <field name="name">Buscar cortacesped</field>
+        <field name="model">modelo.main.jardineria</field>
+        <field name="inherit_id" ref="suposto_2_Mario_Cascudo_Ferreiro.barra_busqueda_cortacesped"/>
+        <field name="arch" type="xml">
+            <filter name="filtro_cortacesped_alguna_vez_averiado" position="after">
+                <filter string="Maquinas con seguro" name="filtro_cortacesped_con_seguro"
+                        domain="[('tieneSeguro','=','true')]"/>
+            </filter>
+        </field>
+    </record>
+
+
 </odoo>
+
